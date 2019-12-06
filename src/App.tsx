@@ -1,25 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+import { ApolloProvider } from '@apollo/react-hooks';
+import client from './utils/apollo-client/ApolloClient';
 import './App.css';
+import { Home } from './components/Home';
+
+import 'antd/dist/antd.css';
 
 const App: React.FC = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <Home />
+      </div>
+    </ApolloProvider>
   );
 }
 
