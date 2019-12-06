@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks';
 
-import { Row, Col, Pagination, Menu } from 'antd';
+import { Row, Col, Pagination, Menu, Spin } from 'antd';
 
 
 import { GAME } from '../../common/query';
@@ -37,7 +37,11 @@ export const Home: React.FC<Props> = (props: Props) => {
 
 
   const renderListGame = () => {
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+      return <div style={{textAlign: 'center'}}>
+        <Spin />
+      </div>
+    };
     if (error) return <p>Error :(</p>;
     const { entries } = data.gamesByOrder;
     return <ListGame entries={entries} />;
